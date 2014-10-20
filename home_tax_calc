@@ -1,0 +1,55 @@
+<HTML>
+<BODY>
+<form>
+<table>
+<tr>
+<td>Home Calculator</td>
+</tr>
+<tr>
+<td width="94">Market Value:</td>
+<td width="165"><input type= "text" name="avalue" /></td>
+</tr>
+<tr>
+<td>Rate Increase:</td>
+<td>$ .70</td>
+<td width="53"></td>
+</tr>
+<tr>
+<td height="31">Land Type:</td>
+<td><select name="ltype">
+<option value="6000">Owner Occupied Home</option>
+<option value="11000">Owner Occupied Senior</option>
+<option value="0">Most Recent Assessed Value</option>
+</select> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input name="Input" type="button" value="Calculate" onclick="calc()"/></td>
+<td><input name="reset2" type="reset" value="Clear" /></td>
+</tr>
+</table>
+<br />
+<b>Your estimated tax increase is:</b>
+$ <a id="tax"></a> per year
+</form>
+<script>
+function calc()
+{
+//formula variable
+var avalue=document.forms[0].avalue.value*1;
+var t;
+//loop to select the land type
+for (i=0; i<document.forms[0].ltype.options.length; i++)
+{
+if (document.forms[0].ltype.options[i].selected)
+t = document.forms[0].ltype.options[i].value*1;
+}
+//This is the formula that does the math
+var result=(((avalue/3)-t)*.007);
+result=Math.round(result*100)/100;
+//The line below shows the result in the box
+document.getElementById("tax").innerHTML=result;
+}
+</script>
+</BODY>
+</HTML>
